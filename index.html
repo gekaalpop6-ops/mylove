@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Valentine ❤️</title>
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    text-align:center;
+    background:linear-gradient(-45deg,#ff416c,#ff4b2b,#ff6a88);
+    background-size:400% 400%;
+    animation:gradient 10s infinite;
+    color:white;
+    padding:40px;
+}
+@keyframes gradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+img{
+    max-width:300px;
+    border-radius:20px;
+    margin:20px 0;
+}
+.container{
+    background:rgba(0,0,0,0.4);
+    padding:30px;
+    border-radius:20px;
+    max-width:400px;
+    margin:auto;
+}
+</style>
+</head>
+<body>
+
+<div class="container" id="content">
+<h1>Happy Valentine ❤️</h1>
+</div>
+
+<script>
+let params=new URLSearchParams(window.location.search);
+let img=params.get("img");
+let msg=params.get("msg");
+
+if(img){
+    document.getElementById("content").innerHTML=`
+    <h1>Happy Valentine ❤️</h1>
+    <img src="${img}">
+    <p>${msg}</p>
+    `;
+}else{
+    document.getElementById("content").innerHTML=`
+    <h2>ادخل من صفحة الرفع ❤️</h2>
+    `;
+}
+</script>
+
+</body>
+</html>

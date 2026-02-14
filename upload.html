@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ارفع صورة حبيبك ❤️</title>
+<style>
+body{
+    font-family: Arial;
+    text-align:center;
+    background:linear-gradient(45deg,#ff416c,#ff4b2b);
+    color:white;
+    padding:40px;
+}
+.container{
+    background:rgba(255,255,255,0.15);
+    padding:30px;
+    border-radius:20px;
+    max-width:400px;
+    margin:auto;
+}
+input, textarea{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border:none;
+    border-radius:10px;
+}
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:white;
+    color:#ff416c;
+    cursor:pointer;
+}
+a{
+    color:white;
+    display:block;
+    margin-top:20px;
+    word-break:break-all;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>ارفع صورة حبيبك ❤️</h1>
+
+<input type="file" id="image">
+<textarea id="message" placeholder="اكتب رسالتك هنا"></textarea>
+<button onclick="upload()">اعمل رابط 💌</button>
+
+<a id="result"></a>
+</div>
+
+<script>
+async function upload(){
+    let file=document.getElementById("image").files[0];
+    let message=document.getElementById("message").value;
+
+    if(!file || !message){
+        alert("ارفع صورة واكتب رسالة ❤️");
+        return;
+    }
+
+    let formData=new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "ml_default");
+
+    let res=await fetch("https://api.cloudinary.com/v1_1/drb1tb4mg/image/upload",{
+        method:"POST",
+        body:formData
+    });
+
+    let data=await res.json();
+
+    let imageUrl=data.secure_url;
+
+    let link=`index.html?img=${encodeURIComponent(imageUrl)}&msg=${encodeURIComponent(message)}`;
+
+    document.getElementById("result").innerHTML=
+    `لينك المفاجأة ❤️<br><a href="${link}" target="_blank">${link}</a>`;
+}
+</script>
+
+</body>
+</html>
