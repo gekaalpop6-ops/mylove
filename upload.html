@@ -66,7 +66,7 @@ async function upload(){
 
     let formData=new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "ml_default");
+    formData.append("upload_preset", "valentine_upload");
 
     let res=await fetch("https://api.cloudinary.com/v1_1/drb1tb4mg/image/upload",{
         method:"POST",
@@ -86,3 +86,4 @@ async function upload(){
 
 </body>
 </html>
+
